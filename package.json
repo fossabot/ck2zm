@@ -1,8 +1,7 @@
 {
   "name": "ck2zm",
-  "homepage": "https://baitun.github.io/ck2zm",
-  "version": "0.1.0",
-  "private": true,
+  "homepage": "https://baitun.github.io/ck2zm/",
+  "private": false,
   "dependencies": {
     "@types/jest": "23.3.14",
     "@types/node": "10.14.4",
