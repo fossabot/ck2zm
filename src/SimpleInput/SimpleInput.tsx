@@ -1,5 +1,7 @@
 import React from "react";
 
+import downloadCsv from "./downloadCsv";
+
 function SimpleInput() {
   let fileReader: FileReader | undefined;
 
@@ -9,6 +11,7 @@ function SimpleInput() {
       const content = fileReader.result;
       if (typeof content === "string") {
         console.log(content);
+        downloadCsv(content);
       } else {
         console.error("File is empty");
       }
