@@ -1,41 +1,47 @@
 import React from "react";
 
-class SimpleInput extends React.Component {
-  fileReader: FileReader | undefined;
+import { saveAs } from "file-saver";
 
-  handleFileRead = (ev: ProgressEvent) => {
-    // console.log("handleFileRead", ev, this.fileReader);
-    if (this.fileReader) {
-      const content = this.fileReader.result;
+import Papa from "papaparse";
+
+function SimpleInput() {
+  let fileReader: FileReader | undefined;
+
+  const handleFileRead = (ev: ProgressEvent) => {
+    // console.log("handleFileRead", ev, fileReader);
+    if (fileReader) {
+      const content = fileReader.result;
       if (typeof content === "string") {
-        console.log(content);
+        // console.log(content);
+        const csvObject = Papa.parse(content);
+        console.log(csvObject);
+        var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        // saveAs(blob, "export.csv");
       } else {
         console.error("File is empty");
       }
     }
   };
 
-  handleFileChosen = (file: any) => {
+  const handleFileChosen = (file: any) => {
     // console.log("handleFileChosen", file);
-    this.fileReader = new FileReader();
-    this.fileReader.onloadend = this.handleFileRead;
-    this.fileReader.readAsText(file);
+    fileReader = new FileReader();
+    fileReader.onloadend = handleFileRead;
+    fileReader.readAsText(file);
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log("handleInputChange", e);
     if (e && e.target && e.target.files) {
-      this.handleFileChosen(e.target.files[0]);
+      handleFileChosen(e.target.files[0]);
     }
   };
 
-  render() {
-    return (
-      <>
-        <input type="file" accept=".csv" onChange={this.handleInputChange} />
-      </>
-    );
-  }
+  return (
+    <>
+      <input type="file" accept=".csv" onChange={handleInputChange} />
+    </>
+  );
 }
 
 export default SimpleInput;
