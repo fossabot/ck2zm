@@ -1,6 +1,6 @@
 import React from "react";
 
-import downloadCsv from "./downloadCsv";
+import { saveAs } from "file-saver";
 
 function SimpleInput() {
   let fileReader: FileReader | undefined;
@@ -11,7 +11,8 @@ function SimpleInput() {
       const content = fileReader.result;
       if (typeof content === "string") {
         console.log(content);
-        downloadCsv(content);
+        var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "export.csv");
       } else {
         console.error("File is empty");
       }
