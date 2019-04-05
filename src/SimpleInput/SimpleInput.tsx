@@ -2,6 +2,8 @@ import React from "react";
 
 import { saveAs } from "file-saver";
 
+import Papa from "papaparse";
+
 function SimpleInput() {
   let fileReader: FileReader | undefined;
 
@@ -10,9 +12,11 @@ function SimpleInput() {
     if (fileReader) {
       const content = fileReader.result;
       if (typeof content === "string") {
-        console.log(content);
+        // console.log(content);
+        const csvObject = Papa.parse(content);
+        console.log(csvObject);
         var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, "export.csv");
+        // saveAs(blob, "export.csv");
       } else {
         console.error("File is empty");
       }
