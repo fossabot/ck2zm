@@ -1,6 +1,7 @@
 {
   "name": "ck2zm",
   "homepage": "https://baitun.github.io/ck2zm/",
+  "license": "MIT",
   "private": false,
   "dependencies": {
     "@types/file-saver": "2.0.0",
