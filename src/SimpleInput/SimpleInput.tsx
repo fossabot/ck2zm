@@ -5,10 +5,9 @@ import { saveAs } from "file-saver";
 import Papa from "papaparse";
 
 function SimpleInput() {
-  let fileReader: FileReader | undefined;
+  const handleFileRead = (progressEvent: ProgressEvent) => {
+    const fileReader = progressEvent.target as FileReader;
 
-  const handleFileRead = (ev: ProgressEvent) => {
-    // console.log("handleFileRead", ev, fileReader);
     if (fileReader) {
       const content = fileReader.result;
       if (typeof content === "string") {
@@ -23,9 +22,8 @@ function SimpleInput() {
     }
   };
 
-  const handleFileChosen = (file: any) => {
-    // console.log("handleFileChosen", file);
-    fileReader = new FileReader();
+  const handleFileChosen = (file: Blob) => {
+    const fileReader = new FileReader();
     fileReader.onloadend = handleFileRead;
     fileReader.readAsText(file);
   };
@@ -33,7 +31,8 @@ function SimpleInput() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log("handleInputChange", e);
     if (e && e.target && e.target.files) {
-      handleFileChosen(e.target.files[0]);
+      const file = e.target.files[0];
+      handleFileChosen(file);
     }
   };
 
