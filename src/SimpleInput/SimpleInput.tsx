@@ -4,7 +4,7 @@ import { saveAs } from "file-saver";
 
 import Papa from "papaparse";
 
-const handleFileRead = (progressEvent: ProgressEvent) => {
+function handleFileRead(progressEvent: ProgressEvent) {
   const fileReader = progressEvent.target as FileReader;
 
   if (fileReader) {
@@ -19,21 +19,18 @@ const handleFileRead = (progressEvent: ProgressEvent) => {
       console.error("File is empty");
     }
   }
-};
+}
 
-const handleFileChosen = (file: Blob) => {
-  const fileReader = new FileReader();
-  fileReader.onloadend = handleFileRead;
-  fileReader.readAsText(file);
-};
-
-const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
   // console.log("handleInputChange", e);
   if (e && e.target && e.target.files) {
     const file = e.target.files[0];
-    handleFileChosen(file);
+
+    const fileReader = new FileReader();
+    fileReader.onload = handleFileRead;
+    fileReader.readAsText(file);
   }
-};
+}
 
 export default function SimpleInput() {
   return (
