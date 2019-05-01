@@ -14,7 +14,7 @@ function handleFileRead(progressEvent: ProgressEvent) {
       const csvObject = Papa.parse(content);
       console.log(csvObject);
       var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-      // saveAs(blob, "export.csv");
+      saveAs(blob, "export.csv");
     } else {
       console.error("File is empty");
     }
