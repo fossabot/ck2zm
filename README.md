@@ -1,4 +1,6 @@
 # Конвертер CoinKeeper в ZenMoney
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbaitun%2Fck2zm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbaitun%2Fck2zm?ref=badge_shield)
+
 
 # 🚧 This project is under development. It's not ready yet.
 
@@ -28,3 +30,6 @@
 ## Зависимости
 * [PapaParse](https://github.com/mholt/PapaParse) - используется для парсинга CSV файла, лучшее решение для js
 * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) - кроссбраузерное решение для сохранения строки в файл
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbaitun%2Fck2zm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbaitun%2Fck2zm?ref=badge_large)
